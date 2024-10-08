@@ -1,0 +1,24 @@
+function snr = getSNR(signal,noise)
+% Write a function that calculates the SNR given the signal and noise. 
+% Signal and noise arrays should have shapes (N,1) 
+% You may not use any predefined matlab functions except for log10, power, and sqrt.
+% You may add as many lines of code as you want
+
+% Check that they are columns
+if size(signal,2)~=2 | size(noise,2)~= 1
+    error('Error: Signal and Noise must be column vectors')
+end
+
+for i = 1:length(signal):
+    SignalPower = SignalPower + power(signal(i),2);
+end
+SignalPower = SignalPower/length(signal);
+
+for i = 1:length(noise):
+    NoisePower = NoisePower + power(noise(i),2);
+end
+NoisePower = NoisePower/length(noise)
+
+snr = 10*log10(SignalPower/NoisePower)
+
+end

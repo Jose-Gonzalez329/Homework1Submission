@@ -1,0 +1,51 @@
+function myPlot(X,Ys,inputTitle, xAxisLabel, yAxisLabel, yLabels, type)
+fubnction myPlot(X, Ys, Title, xlabel, ylabel, labels, type)
+%{
+
+Write plotting code that will take an array of signals Y with corresponding time points X and generate
+a plot. The type of plot is indicated by type. The type can be set to
+"stem" or "continuous".
+
+Input Sizes:
+
+>>> size(X) 
+sz =
+    1 x N
+>>> size(Ys) %% M signals of length N (each row is a signal)
+sz = 
+    M x N 
+
+>>> size(yLabels)
+sz = 
+    1 x N
+
+Your plot should include the following:
+- title 
+- axis labels 
+- a legend (with a label for each signal Y set in the array yLabels)
+
+Your code should catch sizing errors and output a description of the error.
+For example, if length(X) ~= length(Ys[0]), your code should not generate a
+plot and instead output an error message for the user. 
+%}
+
+% Sizing Checks
+
+if size(X,2) ~= size(Ys,2) | size(X,2) ~= size(yLabels,2) | size(Ys,2) ~= size(yLabels,2)
+    error('Error: Dimensions do not match. Please double check the lengths of your signal matches with your time points.')
+end
+
+figure
+
+hold on
+
+for i = 1:length(X)
+    if type == 'stem'
+        stem(X,Ys(i,:),'')
+
+    elseif type == 'continuos'
+
+    else
+        error('Error:Type is not continuos or stem')
+    end
+end
